@@ -1,0 +1,80 @@
+#!/bin/bash
+USERS=$@
+if [ $# -gt 0 ]
+then
+    for USERNAME in $USERS
+    do
+        EXUSER=$(cat /etc/passwd | grep -w $USERNAME | cut -d ":" -f1)
+        if [ "$USERNAME" = "$EXUSER" ]
+        then
+            echo "User Exists, please use a diffrent username."
+        else
+            SPEC=$(echo '!@#$%^&*()_' | fold -w1 | shuf | head -1)
+            PASSWORD=India@${RANDOM}${SPEC}
+            echo "Lets Create User $USERNAME"
+            useradd -m $USERNAME
+            echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
+            passwd -e ${USERNAME}
+            echo "Username is ${USERNAME}  Password is ${PASSWORD}"
+        fi
+    done
+else
+    echo "Provide Some Input as you have given $# params"
+fi
+#=============================================================================
+ 
+#!/bin/bash
+while true
+do
+read -p "Please Enter The User Name:" USERNAME
+if [ -z $USERNAME ]; then
+    echo "Please Enter A Valid Input."
+else
+    EXUSER=$(cat /etc/passwd | grep -w $USERNAME | cut -d ":" -f 1)
+    SPEC=$(echo '!@#$%^&*()_' | fold -w1 | shuf | head -1)
+    PASSWORD=India@${RANDOM}${SPEC}
+    if [ "$USERNAME" = "$EXUSER" ]; then
+        echo "User $USERNAME exists. Try diffrent name."
+    else
+        echo "Lets Create User $USERNAME"
+        useradd -m ${USERNAME}
+        echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
+        passwd -e ${USERNAME}
+        #Print the USername and Password.
+        echo "Username is ${USERNAME}  Password is ${PASSWORD} "
+    fi
+fi
+done
+#=========================================================================
+root@ip-10-1-1-227:~# for x in $(cat /etc/passwd | grep -i devopsb14 | cut -d ":" -f 1)
+do
+userdel -r $x
+sleep 1
+done
+===========================================================================
+#!/bin/bash
+USERS=$@
+for USERNAME in $USERS
+do
+if [ -z $USERNAME ]; then
+    echo "Please Enter A Valid Input."
+else
+    EXUSER=$(cat /etc/passwd | grep -w $USERNAME | cut -d ":" -f 1)
+    SPEC=$(echo '!@#$%^&*()_' | fold -w1 | shuf | head -1)
+    PASSWORD=India@${RANDOM}${SPEC}
+    if [ "$USERNAME" = "$EXUSER" ]; then
+        echo "User $USERNAME exists. Try diffrent name."
+    else
+        echo "Lets Create User $USERNAME"
+        useradd -m ${USERNAME}
+        echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
+        passwd -e ${USERNAME}
+        #Print the USername and Password.
+        echo "Username is ${USERNAME}  Password is ${PASSWORD} "
+    fi
+fi
+done
+ 
+ 
+ 
+
