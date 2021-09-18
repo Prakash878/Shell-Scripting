@@ -1,0 +1,141 @@
+FUNCTONS:
+
+Syntax to use:
+Syntax1:
+function function_name
+{
+###set of commands
+}
+
+Syntax2:
+function_name()
+{
+####set of commands
+}
+
+#!/bin/bash
+Get_VPC() {
+    echo "Running The Functon To List VPCs in $1"
+    vpc_list=$(aws ec2 describe-vpcs --region $1 | jq .Vpcs[].VpcId | tr -d '"')
+    for vpc in $(echo $vpc_list); do
+        echo "The VPC ID IS:$vpc"
+        echo "======================================="
+    done
+ 
+}
+#Get_VPC $1
+#Get_VPC $2
+for X in $@; do
+    Get_VPC $X
+done
+#bash shell_function 'us-east-1'
+#bash func1.sh us-east-1 us-east-2 us-west-1
+ 
+
+#!/bin/bash
+Get_VPC() {
+    regions=('us-east-1' 'us-east-2' 'us-west-1' 'us-west-2')
+    for region in ${regions[@]}
+    do
+        if [ $region = 'us-west-1' ]
+        then
+            #continue
+            #break
+        else
+            vpc_list=$(aws ec2 describe-vpcs --region $region | jq .Vpcs[].VpcId | tr -d '"')
+            for vpc in $(echo $vpc_list); do
+                echo "The VPC ID IS:$vpc in $region"
+                echo "======================================="
+            done
+        fi
+    done
+}
+ 
+Get_VPC
+
+#!/bin/bash
+delete_vols() {
+vols=$(aws ec2 describe-volumes | jq ".Volumes[].VolumeId" | tr -d '"')
+for vol in $vols
+do
+    size=$(aws ec2 describe-volumes --volume-ids $vol | jq ".Volumes[].Size")
+    if  [ $size -gt 5 ]
+    then
+        echo "$vol is  a Prod Volume. Dont Delete"
+    else
+        echo "Deleting Volume $vol"
+        aws ec2 delete-volume --volume-id $vol
+    fi
+done
+}
+ 
+delete_vols
+
+#!/bin/bash
+function subnets() {
+    echo "Getting SUBNETS Info VPC $VPC..."
+    aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC" --region $REGION | jq ".Subnets[].SubnetId"
+    echo "---------------------------------------------"
+}
+ 
+function vpcs() {
+    for REGION in $@; do
+        echo "Getting VPC List For Regions $REGION..."
+        vpcs=$(aws ec2 describe-vpcs --region "${REGION}" | jq ".Vpcs[].VpcId" | tr -d '"')
+        echo $vpcs
+        for VPC in $vpcs; do
+            subnets $VPC
+        done
+    done
+}
+ 
+vpcs $@
+ 
+ 
+
+#!/bin/bash
+function subnets {
+    echo "************************************************************"
+    echo "**Getting SUBNETS Info VPC $VPC in region $REGION**"
+    echo "************************************************************"
+    aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC" --region $REGION | jq ".Subnets[].SubnetId"
+    echo "---------------------------------------------"
+}
+ 
+function sg {
+    echo "********************************************************************"
+    echo "**Getting Security Group Info VPC $VPC in region $REGION**"
+    echo "********************************************************************"
+    aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC" --region $REGION | jq ".SecurityGroups[].GroupName"
+    echo "---------------------------------------------"
+}
+ 
+vpcs() {
+    for REGION in $@; do
+        echo "Getting VPC List For Regions $REGION..."
+        vpcs=$(aws ec2 describe-vpcs --region "${REGION}" | jq ".Vpcs[].VpcId" | tr -d '"')
+        echo $vpcs
+        echo "--------------------------------------------------"
+        for VPC in $vpcs; do
+            subnets $VPC
+        done
+        for VPC in $vpcs; do
+            sg $VPC
+        done
+    done
+}
+ 
+vpcs $@
+
+Return Values in Shell Script:
+#!/bin/bash
+myaddition() {
+    X=$(expr $1 + $2)
+    echo $X
+}
+ 
+myaddition $1 $2
+
+A=$(bash addition.sh 11 21)
+B=$(bash addition.sh 6 7)
+echo $(expr $A + $B)
