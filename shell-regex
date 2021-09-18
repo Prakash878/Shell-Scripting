@@ -1,0 +1,162 @@
+
+#!/bin/bash
+USERS=$@
+if [ $# -gt 0 ]
+then
+    for USERNAME in $USERS
+    do
+        if [[ $USERNAME =~ ^[a-zA-Z]+$ ]]; then
+        #if [[ $USERNAME =~ ^[a-zA-Z] ]]; then
+            EXUSER=$(cat /etc/passwd | grep -w $USERNAME | cut -d ":" -f1)
+            if [ "$USERNAME" = "$EXUSER" ]
+            then
+                echo "User Exists, please use a diffrent username."
+            else
+                SPEC=$(echo '!@#$%^&*()_' | fold -w1 | shuf | head -1)
+                PASSWORD=India@${RANDOM}${SPEC}
+                echo "Lets Create User $USERNAME"
+                useradd -m $USERNAME
+                echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
+                passwd -e ${USERNAME}
+                echo "Username is ${USERNAME}  Password is ${PASSWORD}"
+            fi
+        else
+            echo "INVALID INPUT"
+        fi
+    done
+else
+    echo "Provide Some Input as you have given $# params"
+fi
+
+#!/bin/bash
+USERS=$@
+if [ $# -gt 0 ]
+then
+    for USERNAME in $USERS
+    do
+        #example username should be 5 charc like sree1 sree2 sree3 sree4
+        if [[ $USERNAME =~ ^[a-zA-Z][a-zA-Z][a-zA-Z][0-9]$ ]]; then
+        #example username SVE040 ABC123
+        #if [[ $USERNAME =~ ^[a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][0-9]$ ]]; then
+            EXUSER=$(cat /etc/passwd | grep -w $USERNAME | cut -d ":" -f1)
+            if [ "$USERNAME" = "$EXUSER" ]
+            then
+                echo "User Exists, please use a diffrent username."
+            else
+                SPEC=$(echo '!@#$%^&*()_' | fold -w1 | shuf | head -1)
+                PASSWORD=India@${RANDOM}${SPEC}
+                echo "Lets Create User $USERNAME"
+                useradd -m $USERNAME
+                echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
+                passwd -e ${USERNAME}
+                echo "Username is ${USERNAME}  Password is ${PASSWORD}"
+            fi
+        else
+            echo "INVALID INPUT"
+        fi
+    done
+else
+    echo "Provide Some Input as you have given $# params"
+fi
+
+
+Adrian-lorem.Donec.elementum@Morbisit.edu-"1-202-179-7086"
+Guy-In@magnamalesuadavel.org-"1-385-707-6038"
+Hilel-scelerisque.dui.Suspendisse@odiovelest.org-"1-500-216-2941"
+Philip-In@luctusCurabituregestas.co.uk-"1-161-648-0150"
+Nehru-vitae.erat@incursuset.com-"1-826-158-6653"
+Reece-fermentum@natoque.ca-"1-249-559-1353"
+Harding-Phasellus.ornare.Fusce@magnis.org-"1-573-380-6823"
+Keane-montes.nascetur.ridiculus@veliteget.ca-"1-617-743-7671"
+Chaim-natoque@justo.edu-"1-832-291-2746"
+Cameron-interdum.enim.non@tinciduntnibh.com-"1-646-967-2596"
+Dean-sed@nisiaodio.net-"1-587-103-7419"
+Valentine-dui@non.co.uk-"1-661-857-3211"
+Kirk-Morbi.metus.Vivamus@Pellentesque.edu-"1-459-953-3224"
+Josiah-Nullam.vitae@seddolor.co.uk-"1-351-581-3196"
+Cody-vitae@fringilla.org-"1-389-972-8347"
+Tanek-amet@liberoest.edu-"1-333-485-3423"
+Henry-Donec@cursusin.ca-"1-277-273-7804"
+Abraham-tellus@InloremDonec.com-"1-597-402-7497"
+Yuli-scelerisque@vitaeposuereat.org-"1-101-487-4881"
+Jesse-eu.eros@Praesentinterdumligula.com-"1-138-716-8380"
+Ashton-semper@atliberoMorbi.net-"1-634-506-3576"
+Cullen-molestie@Morbisitamet.edu-"1-397-835-9925"
+Quamar-a.facilisis@ornaretortorat.edu-"1-111-948-7730"
+Alec-felis.purus.ac@sociosquadlitora.edu-"1-823-481-0981"
+Galvin-augue@etrutrumeu.edu-"1-758-982-0333"
+Richard-adipiscing.Mauris.molestie@nibhdolor.edu-"1-432-923-9631"
+Lamar-quis.diam.luctus@rutrumeuultrices.ca-"1-870-697-4811"
+Dominic-venenatis.vel@velit.ca-"1-792-197-7489"
+Jermaine-a@dapibus.org-"1-776-712-1219"
+Dorian-nulla.magna@vehicula.com-"1-665-408-6735"
+Noble-tincidunt@facilisisnonbibendum.edu-"1-746-730-2698"
+Stone-non@sagittis.co.uk-"1-854-976-6467"
+Rafael-et@nec.edu-"1-184-121-8118"
+Herrod-amet.dapibus.id@rhoncusDonec.edu-"1-899-423-2140"
+Arsenio-erat.volutpat.Nulla@convallisestvitae.ca-"1-960-528-5946"
+Jakeem-gravida@penatibuset.co.uk-"1-308-536-4079"
+Kareem-eleifend@sed.org-"1-332-115-4978"
+Adam-sem.semper@nibhDonecest.co.uk-"1-500-895-1978"
+Mohammad-elit@Morbi.ca-"1-608-824-1921"
+Wylie-euismod.est.arcu@ipsum.org-"1-790-275-7715"
+Travis-justo@augue.net-"1-941-183-2207"
+Richard-mauris.ipsum@auctor.com-"1-100-806-3074"
+Kirk-nisi.nibh@massa.edu-"1-108-428-7002"
+Tyrone-Mauris.ut.quam@cursusNuncmauris.co.uk-"1-968-724-2311"
+Aquila-rhoncus@pede.co.uk-"1-322-600-6476"
+Julian-mi.enim@dignissimtemporarcu.net-"1-616-115-0444"
+Boris-Aliquam.tincidunt.nunc@vitaeposuere.ca-"1-111-810-8648"
+Ivan-congue.a@mi.net-"1-588-362-1064"
+Leo-Sed@malesuada.com-"1-781-677-2157"
+Robert-egestas.hendrerit.neque@Proinultrices.ca-"1-119-614-3344"
+Colby-volutpat@blanditenim.edu-"1-808-851-8993"
+Alexander-dolor.elit@sagittisDuisgravida.com-"1-804-618-2622"
+Thane-ut@fringillacursus.org-"1-920-436-0613"
+Isaac-adipiscing.enim@cursus.ca-"1-467-934-0853"
+Harrison-ipsum@etrisus.net-"1-596-761-2616"
+Avram-quam.dignissim@nonvestibulum.org-"1-260-852-8849"
+Roth-Nam.porttitor.scelerisque@nequesed.com-"1-491-920-6775"
+Howard-Cras.sed@dui.co.uk-"1-909-530-2110"
+Ashton-vehicula@malesuadavel.com-"1-164-885-9208"
+Abel-est.mollis.non@diamProin.co.uk-"1-357-187-5935"
+Erasmus-cursus@nonenim.com-"1-754-607-7277"
+Graiden-scelerisque.dui@urnaUttincidunt.net-"1-181-733-6259"
+Jameson-metus.facilisis@Namporttitorscelerisque.net-"1-703-808-3259"
+Daniel-eleifend.nec@et.net-"1-612-470-2152"
+Vance-accumsan@purusMaecenaslibero.net-"1-391-435-3366"
+Merrill-felis.ullamcorper.viverra@pharetranibhAliquam.ca-"1-845-877-1898"
+Flynn-rhoncus@ornareplaceratorci.com-"1-989-403-1724"
+Silas-auctor@sitametante.edu-"1-667-819-8842"
+Hector-vitae@aliquameu.net-"1-730-797-3344"
+Kennedy-Vivamus.non.lorem@eunibhvulputate.org-"1-213-772-2289"
+Austin-lorem.tristique@nisl.com-"1-651-197-7175"
+Phillip-augue@miloremvehicula.co.uk-"1-594-645-5364"
+Todd-malesuada@Nam.net-"1-722-641-6722"
+Ashton-amet.consectetuer.adipiscing@mauriselit.edu-"1-402-279-4500"
+Reuben-amet.diam.eu@magna.edu-"1-591-569-5217"
+Hasad-Vivamus.sit.amet@ligulaNullamfeugiat.org-"1-599-471-9376"
+Wayne-Donec@eget.org-"1-453-771-0470"
+Drew-odio.sagittis.semper@augue.edu-"1-911-108-7841"
+Kareem-primis.in.faucibus@nonarcuVivamus.ca-"1-795-467-4664"
+Abbot-at@quisdiamluctus.ca-"1-519-942-6277"
+Kato-dui.Fusce@ultrices.org-"1-959-805-5552"
+Drake-sit@fringilla.org-"1-592-186-1730"
+Edward-Duis.a@placerat.org-"1-618-955-2796"
+Dominic-diam.Sed@Sed.com-"1-822-539-0743"
+Lars-urna.et@aliquetPhasellus.net-"1-644-316-4927"
+Galvin-mauris.ipsum.porta@lobortistellusjusto.org-"1-113-270-9224"
+Timon-ornare@egetnisidictum.co.uk-"1-459-352-6319"
+Dillon-odio.vel@cubiliaCuraeDonec.com-"1-590-831-3227"
+Bert-orci.Ut@Inscelerisque.ca-"1-864-426-7159"
+Abraham-quam.Pellentesque.habitant@Morbi.ca-"1-354-581-3439"
+Raymond-lectus.pede.et@lacus.edu-"1-711-587-6129"
+Lev-id@Donectempus.org-"1-469-697-5497"
+Acton-lobortis.risus.In@Inornare.ca-"1-148-881-0413"
+Keefe-a.aliquet@mattis.org-"1-819-757-8858"
+Erich-posuere.vulputate@justonecante.com-"1-554-299-6245"
+Aladdin-Aenean@consectetueradipiscingelit.edu-"1-805-710-8601"
+Rigel-tincidunt.nibh@ategestasa.edu-"1-235-434-0784"
+Brenden-Nullam.feugiat.placerat@dis.co.uk-"1-974-316-8353"
+Joel-torquent.per.conubia@magnaaneque.ca-"1-884-227-7308"
+Elijah-pretium.aliquet.metus@consectetueradipiscingelit.net-"1-871-325-4816"
